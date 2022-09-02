@@ -1,10 +1,12 @@
 import ctypes
 from sys import platform
 
-
-lib = ctypes.CDLL(r"lib\TrackLib(x64).dll")
-if platform != 'win32':
-    lib = ctypes.CDLL(r"lib\TrackLib.so")
+path=""
+if platform == 'win32':
+    path = r"lib\TrackLib(x64).dll"
+elif platform == 'linux' or platform == 'linux2':
+    path = r"./lib/TrackLib.so"
+lib = ctypes.CDLL(path)
 
 class Dot(ctypes.Structure):
     '''
